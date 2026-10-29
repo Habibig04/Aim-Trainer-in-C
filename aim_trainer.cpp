@@ -11,7 +11,7 @@
 #include <algorithm>
 #include <string>
 
-// ---------------------------------------------------------------- constants
+// constants
 constexpr float ARENA_W = 40.0f;
 constexpr float ARENA_H = 20.0f;
 constexpr float ARENA_L = 60.0f;
@@ -52,7 +52,7 @@ const ModeInfo MODES[NUM_MODES] = {
 const int RESOLUTIONS[][2] = {{1024, 576}, {1280, 720}, {1600, 900}, {1920, 1080}};
 constexpr int NUM_RES = 4;
 
-// ---------------------------------------------------------------- data types
+// data types
 struct Settings {
     float sens = 0.003f;
     float fov = 60.0f;
@@ -98,7 +98,7 @@ struct GameStats {
     float avgKill() const { return hits > 0 ? killTimeTotal / hits : 0.0f; }
 };
 
-// ---------------------------------------------------------------- globals
+//  globals
 GameState gameState = MENU_MAIN;
 GameMode gameMode = MODE_ENDLESS;
 Settings settings;
@@ -121,7 +121,7 @@ bool hitMarkerHead = false;
 bool audioOk = false;
 Sound hitSound, headSound, shootSound, missSound;
 
-// ---------------------------------------------------------------- helpers
+// helpers
 float RandF(float a, float b) { return a + (float)rand() / (float)RAND_MAX * (b - a); }
 
 Sound MakeBeep(float freq, float dur, float vol) {
@@ -176,7 +176,7 @@ void RandomizeVelocity(Target& t) {
     t.vel = {cosf(a) * t.speed, RandF(-0.3f, 0.3f) * t.speed, sinf(a) * t.speed};
 }
 
-// ---------------------------------------------------------------- targets
+// targets
 void SpawnTarget() {
     if ((int)targets.size() >= MAX_TARGETS) return;
     const ModeInfo& m = MODES[gameMode];
@@ -248,7 +248,7 @@ void UpdateParticles(float dt) {
     particles.erase(std::remove_if(particles.begin(), particles.end(), [](const Particle& p) { return p.life <= 0; }), particles.end());
 }
 
-// ---------------------------------------------------------------- game flow
+// game flow
 void ResetCamera() {
     yaw = pitch = 0;
     camera.position = {ARENA_W / 2, 4.0f, 3.0f};
@@ -336,7 +336,7 @@ void Shoot() {
     SpawnTarget();
 }
 
-// ---------------------------------------------------------------- drawing
+// drawing
 void DrawCentered(const char* t, int y, int fs, Color c) {
     DrawText(t, (GetScreenWidth() - MeasureText(t, fs)) / 2, y, fs, c);
 }
@@ -540,7 +540,7 @@ void DrawResults() {
     else if (Button(cx + 110, by, 200, 50, "MENU (SPACE)", 24)) GoMenu();
 }
 
-// ---------------------------------------------------------------- main
+// main
 int main() {
     srand((unsigned)time(nullptr));
     settings.load();
@@ -578,7 +578,7 @@ int main() {
         camera.fovy = settings.fov;
         if (hitMarker > 0) hitMarker -= dt;
 
-        // ---------------- update
+        //  update
         switch (gameState) {
             case MENU_MODES:
                 if (IsKeyPressed(KEY_ESCAPE)) gameState = MENU_MAIN;
@@ -657,7 +657,7 @@ int main() {
                 break;
         }
 
-        // ---------------- draw (menu buttons are immediate-mode and handle clicks here)
+        // draw 
         BeginDrawing();
         ClearBackground(BLACK);
         switch (gameState) {
