@@ -6,14 +6,18 @@ Made by [Habibig04](https://github.com/Habibig04).
 
 ## Features
 
-- 7 game modes: Static, Moving, Reflex, 30s, 60s, 120s and Endless
-- Sphere and humanoid targets (headshots on humanoids are worth 2 points)
+- You stand in one spot and aim at targets in front of you, like a real range
+- 4 maps: Arena, Firing Range, Apartment (targets sit in the windows of the building across the street) and Dust Alley (crates and a doorway, CS-style)
+- 8 game modes: Static, Moving, Reflex, Bots, 30s, 60s, 120s and Endless
+- Sphere targets and humanoid bots (headshots are worth 2 points)
 - Stats: score, accuracy, streak, targets per minute, average time to hit
-- Best score saved per mode
-- Hit markers, particle effects and built-in sound effects (no asset files needed)
-- Borderless fullscreen that adapts to any screen (F11)
-- Settings for sensitivity, FOV, resolution and Potato Mode
-- Automatic Potato Mode if your FPS is low
+- Best score saved for every map and mode
+- Graphics presets: High, Medium and Potato, plus automatic Potato if your FPS is low
+- Full crosshair editor (style, colour, size, thickness, gap, opacity, outline) with live preview
+- Sensitivity, FOV, volume, target colour and FPS limit settings
+- Borderless fullscreen that adapts to any screen (F11) and a resizable window
+- Animated main menu with a live 3D background
+- Built-in sound effects (no asset files needed)
 - Works on desktop OpenGL 3.3, desktop OpenGL 2.1 and OpenGL ES 2.0
 
 ## Controls
@@ -22,8 +26,6 @@ Made by [Habibig04](https://github.com/Habibig04).
 |-----|--------|
 | Mouse | Aim |
 | Left click | Shoot |
-| W A S D | Move |
-| Space / Left Shift | Move up / down |
 | P or Esc | Pause |
 | F11 | Toggle fullscreen |
 
@@ -34,8 +36,9 @@ In the pause menu: **P** resume, **R** restart, **F** finish and see results, **
 | Mode | Description |
 |------|-------------|
 | Static | Stationary targets, no time limit |
-| Moving | Targets move around, no time limit |
+| Moving | Strafing targets, no time limit |
 | Reflex | Targets shrink and vanish if you are too slow |
+| Bots | Strafing humanoid bots, aim for the head |
 | 30 / 60 / 120 Seconds | Timed runs with static targets |
 | Endless | Moving targets, no limit |
 
@@ -53,8 +56,8 @@ Untimed modes end when you choose **Finish** from the pause menu.
 Get the source first:
 
 ```bash
-git clone https://github.com/Habibig04/Aim-Trainer-in-C.git
-cd Aim-Trainer-in-C
+git clone https://github.com/Habibig04/<repo-name>.git
+cd <repo-name>
 ```
 
 Replace `<repo-name>` with this repository's name.
@@ -140,8 +143,8 @@ cmake --build build -j4
 
 The game creates two small files in the folder you run it from:
 
-- `settings.cfg` for sensitivity, FOV, resolution, fullscreen and Potato Mode
-- `scores.cfg` for your best score in each mode
+- `settings.ini` for all your settings, including the crosshair
+- `scores.ini` for your best score on each map and mode
 
 Delete them to reset everything. You may want to add them to your `.gitignore`.
 
@@ -154,7 +157,7 @@ Your GPU or driver can't create the OpenGL version that build was made for. Use 
 Enable 3D acceleration in the VM settings. Without it, the launcher falls back to software rendering, which is slower.
 
 **Low FPS**
-Turn on Potato Mode in Settings. It removes wireframes and particles and uses simpler target models. The game switches it on by itself if it measures under 45 FPS.
+Set Graphics quality to Medium or Potato in Settings, or lower the FPS limit. Potato removes shadows, glow and particles and uses simpler models. The game switches to Potato by itself if it measures under 45 FPS.
 
 **`cmake` can't download raylib**
 The first configure needs internet access to fetch raylib from GitHub.
