@@ -56,11 +56,10 @@ Untimed modes end when you choose **Finish** from the pause menu.
 Get the source first:
 
 ```bash
-git clone https://github.com/Habibig04/<repo-name>.git
-cd <repo-name>
+git clone https://github.com/Habibig04/Aim-Trainer-in-C.git
+cd Aim-Trainer-in-C
 ```
 
-Replace `<repo-name>` with this repository's name.
 
 ### How the build works
 
